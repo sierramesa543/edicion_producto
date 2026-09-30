@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+  <h1>Productos</h1>
+  <p class="ayuda">Edita o elimina productos sin recargar la página.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for producto in productos %}
+        {% include "componentes/fila_producto.html" %}
+      {% else %}
+        <tr><td colspan="5" class="vacio">No hay productos registrados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

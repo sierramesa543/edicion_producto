@@ -1,0 +1,71 @@
+:root {
+  --fondo: #f6f7f9;
+  --texto: #1f2937;
+  --borde: #d1d5db;
+  --primario: #2563eb;
+  --peligro: #dc2626;
+  --exito: #15803d;
+  --exito-fondo: #dcfce7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+h1 { margin-bottom: .25rem; }
+.ayuda { margin-top: 0; color: #6b7280; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  overflow: hidden;
+}
+th, td { padding: .6rem .75rem; text-align: left; border-bottom: 1px solid var(--borde); vertical-align: middle; }
+th { background: #eef2f7; font-size: .85rem; text-transform: uppercase; letter-spacing: .03em; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.vacio { text-align: center; color: #6b7280; padding: 1.5rem; }
+td.acciones { white-space: nowrap; }
+
+.btn {
+  font: inherit;
+  padding: .35rem .75rem;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.btn:hover { background: #f3f4f6; }
+.btn.primario { background: var(--primario); border-color: var(--primario); color: #fff; }
+.btn.primario:hover { background: #1d4ed8; }
+.btn.peligro { color: var(--peligro); border-color: var(--peligro); }
+.btn.peligro:hover { background: #fef2f2; }
+
+.fila-editar td { background: #f8fafc; }
+.form-edicion { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem 1rem; }
+.campo { display: flex; flex-direction: column; gap: .25rem; }
+.campo.ancho { grid-column: 1 / -1; }
+.campo label { font-size: .85rem; font-weight: 600; }
+.campo input { font: inherit; padding: .4rem .5rem; border: 1px solid var(--borde); border-radius: 6px; }
+.error { color: var(--peligro); font-size: .8rem; }
+.botones { grid-column: 1 / -1; display: flex; gap: .5rem; }
+
+.aviso { color: var(--exito); font-size: .85rem; margin-left: .5rem; }
+.fila-actualizada td { background: var(--exito-fondo); animation: desvanecer 3s ease-out forwards; }
+.fila-eliminada td { color: var(--exito); background: var(--exito-fondo); }
+.fila-error td { color: var(--peligro); background: #fef2f2; }
+
+@keyframes desvanecer { to { background: transparent; } }
+
+@media (max-width: 640px) {
+  .form-edicion { grid-template-columns: 1fr; }
+  th:nth-child(4), td:nth-child(4) { display: none; }
+}

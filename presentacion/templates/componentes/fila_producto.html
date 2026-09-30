@@ -1,0 +1,18 @@
+<tr id="producto-{{ producto.id }}"{% if aviso %} class="fila-actualizada"{% endif %}>
+  <td>{{ producto.nombre }}</td>
+  <td class="num">{{ "%.2f"|format(producto.precio) }}</td>
+  <td class="num">{{ producto.cantidad }}</td>
+  <td>{{ producto.descripcion or "" }}</td>
+  <td class="acciones">
+    <button type="button" class="btn"
+            hx-get="/productos/{{ producto.id }}/editar"
+            hx-target="#producto-{{ producto.id }}"
+            hx-swap="outerHTML">Editar</button>
+    <button type="button" class="btn peligro"
+            hx-delete="/productos/{{ producto.id }}"
+            hx-confirm="¿Eliminar el producto «{{ producto.nombre }}»?"
+            hx-target="#producto-{{ producto.id }}"
+            hx-swap="outerHTML">Eliminar</button>
+    {% if aviso %}<span class="aviso">✓ Producto actualizado</span>{% endif %}
+  </td>
+</tr>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {# HTMX no cambia el HTML cuando la respuesta es 4xx por defecto.
+     Aquí se le indica que SÍ lo haga con 404 y 422, porque esas respuestas
+     traen el fragmento con el aviso o los errores de validación. #}
+  <meta name="htmx-config" content='{"responseHandling":[{"code":"204","swap":false},{"code":"404","swap":true},{"code":"422","swap":true},{"code":"[23]..","swap":true},{"code":"[45]..","swap":false,"error":true}]}'>
+  <title>{% block titulo %}Productos{% endblock %}</title>
+  <link rel="stylesheet" href="/static/estilos.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.4/dist/htmx.min.js"></script>
+</head>
+<body>
+  <main>
+    {% block contenido %}{% endblock %}
+  </main>
+</body>
+</html>

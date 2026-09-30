@@ -1,0 +1,40 @@
+<tr id="producto-{{ producto.id }}" class="fila-editar">
+  <td colspan="5">
+    <form class="form-edicion"
+          hx-post="/productos/{{ producto.id }}"
+          hx-target="#producto-{{ producto.id }}"
+          hx-swap="outerHTML">
+
+      <div class="campo">
+        <label for="nombre-{{ producto.id }}">Nombre</label>
+        <input id="nombre-{{ producto.id }}" type="text" name="nombre" value="{{ nombre }}">
+        {% if errores.nombre %}<span class="error">{{ errores.nombre }}</span>{% endif %}
+      </div>
+
+      <div class="campo">
+        <label for="precio-{{ producto.id }}">Precio</label>
+        <input id="precio-{{ producto.id }}" type="text" inputmode="decimal" name="precio" value="{{ precio }}">
+        {% if errores.precio %}<span class="error">{{ errores.precio }}</span>{% endif %}
+      </div>
+
+      <div class="campo">
+        <label for="cantidad-{{ producto.id }}">Cantidad</label>
+        <input id="cantidad-{{ producto.id }}" type="text" inputmode="numeric" name="cantidad" value="{{ cantidad }}">
+        {% if errores.cantidad %}<span class="error">{{ errores.cantidad }}</span>{% endif %}
+      </div>
+
+      <div class="campo ancho">
+        <label for="descripcion-{{ producto.id }}">Descripción (opcional)</label>
+        <input id="descripcion-{{ producto.id }}" type="text" name="descripcion" value="{{ descripcion }}">
+      </div>
+
+      <div class="botones">
+        <button type="submit" class="btn primario">Guardar</button>
+        <button type="button" class="btn"
+                hx-get="/productos/{{ producto.id }}/cancelar"
+                hx-target="#producto-{{ producto.id }}"
+                hx-swap="outerHTML">Cancelar</button>
+      </div>
+    </form>
+  </td>
+</tr>
